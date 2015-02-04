@@ -90,16 +90,29 @@ def depthFirstSearch(problem):
     fringe = util.Stack()
     explored = util.Queue()
     fringe.push(problem.getStartState())
+
+
+    print "successors: ", problem.getSuccessors( (5,5))
+
     while not fringe.isEmpty():
-        currentNode = fringe.pop();
+        currentNode = fringe.pop()
+
+        print 'current Node: ', currentNode
+        explored.push(currentNode)
 
         if problem.isGoalState(currentNode):
             break
 
         for node in problem.getSuccessors(currentNode):
-            fringe.push(node)
+            if node[0] not in explored:
+                fringe.push(node[0])
 
-        return
+    directions = []
+    for node in explored:
+        print node
+        directions.append(node[1])
+
+    return directions
 
 
 
