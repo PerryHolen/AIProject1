@@ -88,25 +88,31 @@ def depthFirstSearch(problem):
     """
     "*** YOUR CODE HERE ***"
     fringe = util.Stack()
-    explored = []
+    explored = {}
     fringe.push((problem.getStartState(),'',[]))
-
+    directions = []
 
     while not fringe.isEmpty():
         currentNode = fringe.pop()
-
+        print 'current Node:  ', currentNode
         for node in problem.getSuccessors(currentNode[0]):
-            if not node in explored:
+            if not node[0] in explored.keys():
                 fringe.push(node)
-                explored.append(node)
+                explored[currentNode[0]]=currentNode[1]
 
 
-        if problem.isGoalState(currentNode):
+        if problem.isGoalState(currentNode[0]):
+
+            directionsNode = currentNode[0]
+            while not directionsNode==problem.getStartState():
+                directions.append(directionsNode)
+                currentNode
+
             break
 
 
 
-    directions = []
+
     for node in explored:
         print node
         directions.append(node[1])
