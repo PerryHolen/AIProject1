@@ -89,38 +89,39 @@ def depthFirstSearch(problem):
     "*** YOUR CODE HERE ***"
     fringe = util.Stack()
     explored = {}
-    fringe.push((problem.getStartState(),'',[]))
+    fringe.push(problem.getStartState())
     directions = []
 
     while not fringe.isEmpty():
         currentNode = fringe.pop()
         print 'current Node:  ', currentNode
-        for node in problem.getSuccessors(currentNode[0]):
+        for node in problem.getSuccessors(currentNode):
             if not node[0] in explored.keys():
-                fringe.push(node)
-                explored[currentNode[0]]=currentNode[1]
+                fringe.push(node[0])
+                explored[node[0]]=node[1]
 
+        if problem.isGoalState(currentNode):
 
-        if problem.isGoalState(currentNode[0]):
-
-            directionsNode = currentNode[0]
-            while not directionsNode==problem.getStartState():
-                directions.append(directionsNode)
-                currentNode
-
+            
+            while not currentNode==problem.getStartState():
+                directions.append(directions[currentNode])
+                currentNode = getPrevNode(currentNode,directions[currentNode])
             break
 
 
-
-
-    for node in explored:
-        print node
-        directions.append(node[1])
     print directions
     return directions
 
 
-
+def getPrevNode(node, direction):
+    if(direction == 'West'):
+        return (node[0]-1,node[1])
+    elif direction== 'South':
+        return (node[0],node[1]-1)
+    elif direction == 'North':
+        return (node[0],node[1]+1)
+    elif direction == 'East':
+        return (node[0]+1,node[1])
 
 def breadthFirstSearch(problem):
     """Search the shallowest nodes in the search tree first."""
