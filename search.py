@@ -94,18 +94,17 @@ def depthFirstSearch(problem):
 
     while not fringe.isEmpty():
         currentNode = fringe.pop()
-        print 'current Node:  ', currentNode
         for node in problem.getSuccessors(currentNode):
             if not node[0] in explored.keys():
                 fringe.push(node[0])
                 explored[node[0]]=node[1]
 
         if problem.isGoalState(currentNode):
-
-            
+            print 'explored: ' , explored
             while not currentNode==problem.getStartState():
-                directions.append(directions[currentNode])
-                currentNode = getPrevNode(currentNode,directions[currentNode])
+                print 'first step: ', currentNode, explored[currentNode]
+                directions.append(explored[currentNode])
+                currentNode = getPrevNode(currentNode,explored[currentNode])
             break
 
 
@@ -115,13 +114,13 @@ def depthFirstSearch(problem):
 
 def getPrevNode(node, direction):
     if(direction == 'West'):
-        return (node[0]-1,node[1])
-    elif direction== 'South':
-        return (node[0],node[1]-1)
-    elif direction == 'North':
-        return (node[0],node[1]+1)
-    elif direction == 'East':
         return (node[0]+1,node[1])
+    elif direction== 'South':
+        return (node[0],node[1]+1)
+    elif direction == 'North':
+        return (node[0],node[1]-1)
+    elif direction == 'East':
+        return (node[0]-1,node[1])
 
 def breadthFirstSearch(problem):
     """Search the shallowest nodes in the search tree first."""
