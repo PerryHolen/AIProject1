@@ -19,6 +19,7 @@ Pacman agents (in searchAgents.py).
 
 import util
 
+
 class SearchProblem:
     """
     This class outlines the structure of a search problem, but doesn't implement
@@ -87,29 +88,24 @@ def depthFirstSearch(problem):
     print "Start's successors:", problem.getSuccessors(problem.getStartState())
     """
     "*** YOUR CODE HERE ***"
+
     fringe = util.Stack()
-    explored = {}
-    fringe.push(problem.getStartState())
-    directions = []
+    explored = []
+    fringe.push((problem.getStartState(),[],0))
 
     while not fringe.isEmpty():
-        currentNode = fringe.pop()
-        for node in problem.getSuccessors(currentNode):
-            if not node[0] in explored.keys():
-                fringe.push(node[0])
-                explored[node[0]]=node[1]
+        currState, currDirection, curCost = fringe.pop()
 
-        if problem.isGoalState(currentNode):
-            print 'explored: ' , explored
-            while not currentNode==problem.getStartState():
-                print 'first step: ', currentNode, explored[currentNode]
-                directions.append(explored[currentNode])
-                currentNode = getPrevNode(currentNode,explored[currentNode])
-            break
+        if not currState in explored:
+            explored.append(currState)
+            for sucState, sucDirection, sucCost in problem.getSuccessors(currState):
+                fringe.push((sucState,currDirection + [sucDirection],curCost+sucCost))
+
+        if problem.isGoalState(currState):
+            return currDirection
 
 
-    print directions
-    return directions
+    return []
 
 
 def getPrevNode(node, direction):
