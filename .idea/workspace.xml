@@ -25,9 +25,12 @@
             <file leaf-file-name="searchAgents.py" pinned="false" current="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/searchAgents.py">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state vertical-scroll-proportion="0.31828195" vertical-offset="2822" max-vertical-offset="9520">
-                    <caret line="188" column="62" selection-start-line="188" selection-start-column="62" selection-end-line="188" selection-end-column="62" />
-                    <folding />
+                  <state vertical-scroll-proportion="0.52613634" vertical-offset="3192" max-vertical-offset="9894">
+                    <caret line="220" column="30" selection-start-line="220" selection-start-column="30" selection-end-line="220" selection-end-column="30" />
+                    <folding>
+                      <marker date="1423215117113" expanded="true" signature="20156:21407" placeholder="..." />
+                      <marker date="1423215117113" expanded="true" signature="21187:21407" placeholder="..." />
+                    </folding>
                   </state>
                 </provider>
               </entry>
@@ -46,8 +49,8 @@
       <file leaf-file-name="search.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/search.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="714" max-vertical-offset="3247">
-              <caret line="159" column="46" selection-start-line="159" selection-start-column="46" selection-end-line="159" selection-end-column="46" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3247">
+              <caret line="96" column="44" selection-start-line="96" selection-start-column="44" selection-end-line="96" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -73,12 +76,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pacman.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="pacman.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pacman.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.08019441" vertical-offset="8464" max-vertical-offset="11611">
-              <caret line="501" column="82" selection-start-line="501" selection-start-column="82" selection-end-line="501" selection-end-column="82" />
-              <folding />
+            <state vertical-scroll-proportion="-22.464285" vertical-offset="8449" max-vertical-offset="11730">
+              <caret line="534" column="21" selection-start-line="534" selection-start-column="21" selection-end-line="534" selection-end-column="21" />
+              <folding>
+                <element signature="e#1979#2009#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -86,18 +91,18 @@
       <file leaf-file-name="game.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/game.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="4522" max-vertical-offset="12495">
-              <caret line="266" column="29" selection-start-line="266" selection-start-column="29" selection-end-line="266" selection-end-column="29" />
+            <state vertical-scroll-proportion="15.714286" vertical-offset="3126" max-vertical-offset="12444">
+              <caret line="161" column="10" selection-start-line="161" selection-start-column="6" selection-end-line="161" selection-end-column="10" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="searchAgents.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="searchAgents.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/searchAgents.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="8588" max-vertical-offset="9605">
-              <caret line="367" column="66" selection-start-line="367" selection-start-column="66" selection-end-line="367" selection-end-column="66" />
+            <state vertical-scroll-proportion="0.715311" vertical-offset="8871" max-vertical-offset="9979">
+              <caret line="557" column="0" selection-start-line="557" selection-start-column="0" selection-end-line="557" selection-end-column="0" />
               <folding>
                 <element signature="e#1354#1381#0" expanded="true" />
               </folding>
@@ -116,8 +121,8 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/search.py" />
-        <option value="$PROJECT_DIR$/searchAgents.py" />
         <option value="$PROJECT_DIR$/pacman.py" />
+        <option value="$PROJECT_DIR$/searchAgents.py" />
       </list>
     </option>
   </component>
@@ -555,12 +560,12 @@
       <updated>1423037382066</updated>
       <workItem from="1423037382750" duration="5744000" />
       <workItem from="1423081437024" duration="6646000" />
-      <workItem from="1423193416675" duration="5284000" />
+      <workItem from="1423193416675" duration="16372000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17674000" />
+    <option name="totallyTimeSpent" value="28762000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="3840" y="725" width="960" height="1024" extended-state="0" />
@@ -646,7 +651,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="4318" max-vertical-offset="11730">
           <caret line="254" column="0" selection-start-line="254" selection-start-column="0" selection-end-line="254" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#1979#2009#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -678,7 +685,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="4318" max-vertical-offset="11730">
           <caret line="254" column="0" selection-start-line="254" selection-start-column="0" selection-end-line="254" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#1979#2009#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -692,8 +701,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/search.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="3247">
-          <caret line="159" column="46" selection-start-line="159" selection-start-column="46" selection-end-line="159" selection-end-column="46" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1071" max-vertical-offset="3247">
+          <caret line="96" column="44" selection-start-line="96" selection-start-column="44" selection-end-line="96" selection-end-column="44" />
           <folding />
         </state>
       </provider>
@@ -714,29 +723,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pacman.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-22.464285" vertical-offset="8449" max-vertical-offset="11730">
+          <caret line="534" column="21" selection-start-line="534" selection-start-column="21" selection-end-line="534" selection-end-column="21" />
+          <folding>
+            <element signature="e#1979#2009#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/game.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4286" max-vertical-offset="12444">
-          <caret line="266" column="29" selection-start-line="266" selection-start-column="29" selection-end-line="266" selection-end-column="29" />
+        <state vertical-scroll-proportion="15.714286" vertical-offset="3126" max-vertical-offset="12444">
+          <caret line="161" column="10" selection-start-line="161" selection-start-column="6" selection-end-line="161" selection-end-column="10" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/searchAgents.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="8588" max-vertical-offset="9605">
-          <caret line="367" column="66" selection-start-line="367" selection-start-column="66" selection-end-line="367" selection-end-column="66" />
+        <state vertical-scroll-proportion="0.715311" vertical-offset="8871" max-vertical-offset="9979">
+          <caret line="557" column="0" selection-start-line="557" selection-start-column="0" selection-end-line="557" selection-end-column="0" />
           <folding>
             <element signature="e#1354#1381#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pacman.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.08019441" vertical-offset="8464" max-vertical-offset="11611">
-          <caret line="501" column="82" selection-start-line="501" selection-start-column="82" selection-end-line="501" selection-end-column="82" />
-          <folding />
         </state>
       </provider>
     </entry>
