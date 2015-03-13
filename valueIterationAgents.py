@@ -42,7 +42,7 @@ class ValueIterationAgent(ValueEstimationAgent):
         self.discount = discount
         self.iterations = iterations
         self.values = util.Counter() # A Counter is a dict with default 0
-
+        self.update = util.Counter()
         # Write value iteration code here
         "*** YOUR CODE HERE ***"
         # for state in mdp.getStates():
@@ -51,7 +51,7 @@ class ValueIterationAgent(ValueEstimationAgent):
         i = 0
         while i < self.iterations:
             for state in mdp.getStates():
-                possibilities = [-1*float("Inf")]
+                possibilities=[]
 
                 for action in mdp.getPossibleActions(state):
                     value = 0
@@ -59,8 +59,10 @@ class ValueIterationAgent(ValueEstimationAgent):
                         value+=prob * (mdp.getReward(state,action,nextState)\
                                        + (self.discount*self.values[nextState]))
                     possibilities.append(value)
-                self.values[state] = max(possibilities)
-
+                if len(possibilities)>0:
+                    self.update[state] = max(possibilities)
+            for key in self.update.keys():
+                self.values[key] = self.update[key]
             i=i+1
 
 
