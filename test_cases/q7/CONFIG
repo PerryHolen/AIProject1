@@ -1,2 +1,3 @@
-max_points: "1"
-class: "PartialCreditQuestion"
+max_points: "4"
+class: "PassAllTestsQuestion"
+
