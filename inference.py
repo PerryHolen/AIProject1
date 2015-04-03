@@ -157,20 +157,20 @@ class ExactInference(InferenceModule):
         # Replace this code with a correct observation update
         # Be sure to handle the "jail" edge case where the ghost is eaten
         # and noisyDistance is None
-        allPossible = util.Counter()
+        possibilities = util.Counter()
         if noisyDistance==None:
-            allPossible[self.getJailPosition()] = 1.0
+            possibilities[self.getJailPosition()] = 1.0
 
         else:
             for p in self.legalPositions:
                 trueDistance = util.manhattanDistance(p, pacmanPosition)
                 if emissionModel[trueDistance] > 0:
-                    allPossible[p] = self.beliefs[p]*emissionModel[trueDistance]
+                    possibilities[p] = self.beliefs[p]*emissionModel[trueDistance]
 
         "*** END YOUR CODE HERE ***"
 
-        allPossible.normalize()
-        self.beliefs = allPossible
+        possibilities.normalize()
+        self.beliefs = possibilities
 
     def elapseTime(self, gameState):
         """
@@ -267,6 +267,17 @@ class ParticleFilter(InferenceModule):
         """
         "*** YOUR CODE HERE ***"
 
+        numPositions = len(self.legalPositions)
+        legal = self.legalPositions
+        i=0
+        self.particles = []
+        while i < self.numParticles:
+            self.particles.append(legal[i%numPositions])
+            i+=1
+
+
+
+
     def observe(self, observation, gameState):
         """
         Update beliefs based on the given distance observation. Make sure to
@@ -298,7 +309,24 @@ class ParticleFilter(InferenceModule):
         emissionModel = busters.getObservationDistribution(noisyDistance)
         pacmanPosition = gameState.getPacmanPosition()
         "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+        if noisyDistance==None:
+            self.particles = [self.getJailPosition()]*self.numParticles
+        else:
+            possibilities = util.Counter()
+            oldBeliefs = self.getBeliefDistribution()
+            for p in self.legalPositions:
+                distance = util.manhattanDistance(p,pacmanPosition)
+                if emissionModel[distance]>0:
+                    possibilities[p]=oldBeliefs[p]*emissionModel[distance]
+
+            if not any(possibilities.values()):
+                self.initializeUniformly(gameState)
+            else:
+                temp = []
+                for i in xrange(0,self.numParticles):
+                    temp.append(util.sample(possibilities))
+                self.particles = temp
+
 
     def elapseTime(self, gameState):
         """
@@ -315,7 +343,11 @@ class ParticleFilter(InferenceModule):
         a belief distribution.
         """
         "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+        temp = []
+        for oldPos in self.particles:
+            newPosDist = self.getPositionDistribution(self.setGhostPosition(gameState, oldPos))
+            temp.append(util.sample(newPosDist))
+        self.particles = temp
 
     def getBeliefDistribution(self):
         """
@@ -325,7 +357,12 @@ class ParticleFilter(InferenceModule):
         Counter object)
         """
         "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+        beliefs = util.Counter()
+        for particle in self.particles:
+            beliefs[particle]+=1
+        beliefs.normalize()
+        return beliefs
+
 
 class MarginalInference(InferenceModule):
     """
@@ -398,6 +435,17 @@ class JointParticleFilter:
         weight with each position) is incorrect and may produce errors.
         """
         "*** YOUR CODE HERE ***"
+        possibleTuples = list(itertools.product(self.legalPositions, repeat=self.numGhosts))
+        random.shuffle(possibleTuples)
+        numPositions = len(possibleTuples)
+        i=0
+        self.particles = []
+        while i < self.numParticles:
+            self.particles.append(possibleTuples[i%numPositions])
+            i+=1
+
+
+
 
     def addGhostAgent(self, agent):
         """
@@ -445,6 +493,34 @@ class JointParticleFilter:
         emissionModels = [busters.getObservationDistribution(dist) for dist in noisyDistances]
 
         "*** YOUR CODE HERE ***"
+        possibilities = util.Counter()
+        for particle in self.particles:
+            value = 1.0
+            for i in range(self.numGhosts):
+                if noisyDistances[i] ==None:
+                   particle = self.getParticleWithGhostInJail(particle,i)
+                else:
+                    distance = util.manhattanDistance(particle[i],pacmanPosition)
+                    value*=emissionModels[i][distance]
+            possibilities[particle]+=value
+
+        if not any(possibilities.values()):
+            self.initializeParticles()
+            for particle in self.particles:
+                for i in range(self.numGhosts):
+                    if noisyDistances[i]==None:
+                       particle = self.getParticleWithGhostInJail(particle,i)
+
+        else:
+            possibilities.normalize()
+            temp = []
+            for _ in xrange(self.numParticles):
+                temp.append(util.sample(possibilities))
+            self.particles=temp
+
+
+
+
 
     def getParticleWithGhostInJail(self, particle, ghostIndex):
         """
@@ -505,14 +581,23 @@ class JointParticleFilter:
             # now loop through and update each entry in newParticle...
 
             "*** YOUR CODE HERE ***"
-
+            for i in range(self.numGhosts):
+                newPosDist = getPositionDistributionForGhost(
+                    setGhostPositions(gameState, newParticle), i, self.ghostAgents[i]
+                )
+                newParticle[i]=util.sample(newPosDist)
             "*** END YOUR CODE HERE ***"
             newParticles.append(tuple(newParticle))
         self.particles = newParticles
 
     def getBeliefDistribution(self):
         "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+        beliefs = util.Counter()
+        for particle in self.particles:
+            beliefs[particle]+=1
+        beliefs.normalize()
+        return beliefs
+
 
 # One JointInference module is shared globally across instances of MarginalInference
 jointInference = JointParticleFilter()
