@@ -18,6 +18,7 @@ from game import Actions
 from util import manhattanDistance
 import util
 
+
 class StationaryGhost( ghostAgents.GhostAgent ):
     def getDistribution( self, state ):
         dist = util.Counter()
