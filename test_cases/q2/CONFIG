@@ -1,3 +1,2 @@
-max_points: "4"
+max_points: "1"
 class: "PassAllTestsQuestion"
-
