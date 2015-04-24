@@ -72,13 +72,80 @@ def enhancedFeatureExtractorDigit(datum):
     for this datum (datum is of type samples.Datum).
 
     ## DESCRIBE YOUR ENHANCED FEATURES HERE...
-
+        I count the amount of times we cross a black line in each row
+        and each column traversing from left to right and
+        top to bottom. I then count the number of black pixels in
+        each row and column and set a threshold of 7 and 10 respectively
     ##
     """
     features =  basicFeatureExtractorDigit(datum)
 
     "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+    #count line crossings amd bleack pixels in rows
+    for y in xrange(DIGIT_DATUM_HEIGHT):
+        count = 0
+        num = 0
+        black = False
+
+        for x in xrange(DIGIT_DATUM_WIDTH):
+            #num of black pixels
+            if datum.getPixel(x,y)>0:
+                num+=1
+            #line crosses
+            if datum.getPixel(x,y)>0 and not black:
+                black = True
+                count+=1
+            if datum.getPixel(x,y)==0 and black:
+                black = False
+        if count==0:
+            features[(y,"O")]=0
+            features[(y,"I")]=0
+            features[(y,"II")]=0
+        if count==1:
+            features[(y,"O")]=0
+            features[(y,"I")]=1
+            features[(y,"II")]=0
+        if count==2:
+            features[(y,"O")]=0
+            features[(y,"I")]=0
+            features[(y,"II")]=1
+
+        features[y,"yNum"] = 0
+        if num>5:
+            features[y,"yNum"] = 1
+
+    #count line crossings and black pixels in columns
+    for x in xrange(DIGIT_DATUM_WIDTH):
+        count = 0
+        black = False
+        num =0
+        for y in xrange(DIGIT_DATUM_HEIGHT):
+            #count black pixels
+            if datum.getPixel(x,y)>0:
+                num+=1
+
+            #count crossings
+            if datum.getPixel(x,y)>0 and not black:
+                black = True
+                count+=1
+            if datum.getPixel(x,y)==0 and black:
+                black = False
+        if count==0:
+            features[(x,"xO")]=0
+            features[(x,"xI")]=0
+            features[(x,"xII")]=0
+        if count==1:
+            features[(x,"xO")]=0
+            features[(x,"xI")]=1
+            features[(x,"xII")]=0
+        if count==2:
+            features[(x,"xO")]=0
+            features[(x,"xI")]=0
+            features[(x,"xII")]=1
+
+        features[x,"xNum"]=0
+        if num>10:
+            features[x,"xNum"] = 1
 
     return features
 
@@ -163,7 +230,7 @@ def analysis(classifier, guesses, testLabels, testData, rawTestData, printImage)
     This code won't be evaluated. It is for your own optional use
     (and you can modify the signature if you want).
     """
-
+    #
     # Put any code here...
     # Example of use:
     # for i in range(len(guesses)):

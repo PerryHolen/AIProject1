@@ -64,7 +64,7 @@ class PerceptronClassifier:
 
                 if(y!=tLabel):
                     self.weights[y]-=tData
-                    self.weights[tLabel[i]]+=tData
+                    self.weights[tLabel]+=tData
 
     def classify(self, data ):
         """
